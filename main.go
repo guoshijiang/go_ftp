@@ -2,40 +2,20 @@ package main
 
 import (
 	"bjdaos_tool/pkg/daosftp"
-	//cfg "bjdaos_tool/pkg/daosconfig"
-	//"bjdaos_tool/pkg/env"
+	"bjdaos_tool/pkg/env"
+	cfg "bjdaos_tool/pkg/daosconfig"
 )
 
 func main(){
-	//configPath := env.GetConfigPath()
-	//ftpConfig := new(cfg.Config)
-	//ftpConfig.InitConfig(configPath + "\\config.ini")
-	//path := ftpConfig.Read("path", "xml_path")
-	//xml := ftpConfig.Read("file", "file_xml")
-	//for{
-	//	_, slice := daosftp.GetAllFileName("D:\\dian\\out", ".xml")
-	//	fmt.Println(slice)
-	//	daosftp.SendFileToFtpServer()
-	//	daosftp.RemoveFile()
-	//}
-	daosftp.YT()
+	configPath := env.GetConfigPath()
+	ftpConfig := new(cfg.Config)
+	ftpConfig.InitConfig(configPath + "\\config.ini")
+	xml_path := ftpConfig.Read("path", "xml_path")
+	img_path := ftpConfig.Read("path", "img_path")
+	file_img := ftpConfig.Read("file", "file_img")
+	file_xml := ftpConfig.Read("file", "file_xml")
+	for{
+		daosftp.SendXmlFileToFtpServer(xml_path, file_xml)
+		daosftp.SendJpgFileToFtpServer(img_path, file_img)
+	}
 }
-
-
-//func main() {
-//	a := env.GetConfigPath()
-//	myConfig := new(cfg.Config)
-//	myConfig.InitConfig(a + "\\config.yml")
-//	b := myConfig.Read("file", "file_img")
-//	fmt.Println(b)
-//	str := fmt.Sprintf("%s:%s","ss","aaa" )
-//	fmt.Println(str)
-//}
-
-
-
-
-
-
-
-
